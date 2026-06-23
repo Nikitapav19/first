@@ -9,9 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: first
+
     steps:
       - uses: actions/checkout@v4
       
@@ -21,7 +19,7 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore first/practice2026.slnx
         
       - name: Build
         run: dotnet build --configuration Release --no-restore
