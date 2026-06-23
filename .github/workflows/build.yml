@@ -25,4 +25,4 @@ jobs:
         run: dotnet build practice2026.slnx --configuration Release --no-restore
         
       - name: Test
-        run: dotnet test practice2026.slnx --no-build --verbosity normal
+        run: dotnet test practice2026.slnx --configuration Release --no-build --verbosity normal
