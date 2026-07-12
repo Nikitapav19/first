@@ -1,4 +1,6 @@
 <Solution>
-  <Project Path="task07/task07.csproj" />
-  <Project Path="task07tests/task07tests.csproj" />
+  <Project Path="CommandLib/CommandLib.csproj" />
+  <Project Path="CommandRunner/CommandRunner.csproj" />
+  <Project Path="FileSystemCommands/FileSystemCommands.csproj" />
+  <Project Path="task08tests/task08tests.csproj" />
 </Solution>
