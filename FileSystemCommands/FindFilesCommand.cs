@@ -4,6 +4,7 @@ using CommandLib;
 
 namespace FileSystemCommands
 {
+    [CommandInfo("Ищет файлы по заданной маске", "Твое Имя")]
     public class FindFilesCommand : ICommand
     {
         private string _directoryPath;

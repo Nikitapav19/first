@@ -3,6 +3,7 @@ using CommandLib;
 
 namespace FileSystemCommands
 {
+    [CommandInfo("Вычисляет общий размер всех файлов в каталоге", "Твое Имя")]
     public class DirectorySizeCommand : ICommand
     {
         private readonly string _directoryPath;
