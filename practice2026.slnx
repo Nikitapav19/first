@@ -1,6 +1,5 @@
 <Solution>
   <Project Path="CommandLib/CommandLib.csproj" />
-  <Project Path="CommandRunner/CommandRunner.csproj" />
   <Project Path="FileSystemCommands/FileSystemCommands.csproj" />
-  <Project Path="task08tests/task08tests.csproj" />
+  <Project Path="MetadataScanner/MetadataScanner.csproj" />
 </Solution>
