@@ -1,5 +1,4 @@
 <Solution>
-  <Project Path="CommandLib/CommandLib.csproj" />
-  <Project Path="FileSystemCommands/FileSystemCommands.csproj" />
-  <Project Path="PluginSystem/PluginSystem.csproj" />
+  <Project Path="task11/task11.csproj" />
+  <Project Path="task11tests/task11tests.csproj" />
 </Solution>
