@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="CommandLib/CommandLib.csproj" />
   <Project Path="FileSystemCommands/FileSystemCommands.csproj" />
-  <Project Path="MetadataScanner/MetadataScanner.csproj" />
+  <Project Path="PluginSystem/PluginSystem.csproj" />
 </Solution>
