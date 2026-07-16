@@ -1,5 +1,3 @@
 <Solution>
   <Project Path="task14/task14.csproj" />
-  <Project Path="task14tests/task14tests.csproj" />
-  <Project Path="task15/task15.csproj" />
 </Solution>
