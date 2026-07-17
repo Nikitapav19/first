@@ -26,7 +26,7 @@ public class RoundRobinScheduler : IScheduler
 
     public ICommand Select()
     {
-        _commands.TryDequeue(out var cmd);
+        _commands.TryDequeue(out ICommand cmd);
         return cmd;
     }
 
@@ -177,11 +177,11 @@ public class ServerThread
     }
 }
 
-public class HardStopCommand : ICommand
+public class HardStop : ICommand
 {
     private readonly ServerThread _serverThread;
 
-    public HardStopCommand(ServerThread serverThread)
+    public HardStop(ServerThread serverThread)
     {
         _serverThread = serverThread;
     }
@@ -197,42 +197,44 @@ public class HardStopCommand : ICommand
     }
 }
 
-public class SoftStopCommand : ICommand
+public class TestCommand : ICommand
 {
-    private readonly ServerThread _serverThread;
+    private readonly int _id;
+    int counter = 0;
 
-    public SoftStopCommand(ServerThread serverThread)
+    public TestCommand(int id)
     {
-        _serverThread = serverThread;
+        _id = id;
     }
 
     public void Execute()
     {
-        if (Thread.CurrentThread != _serverThread.Thread)
-        {
-            throw new InvalidOperationException();
-        }
+        counter++;
+        Console.WriteLine($"Поток {_id} вызов {counter}");
+    }
+}
 
-        _serverThread.Queue.CompleteAdding();
-        _serverThread.Behavior = SoftStopCommandBehavior;
+public class LongRunningCommand : ICommand
+{
+    private readonly ICommand _command;
+    private readonly IScheduler _scheduler;
+    private int _executionsLeft;
+
+    public LongRunningCommand(ICommand command, IScheduler scheduler, int totalExecutions)
+    {
+        _command = command;
+        _scheduler = scheduler;
+        _executionsLeft = totalExecutions;
     }
 
-    private void SoftStopCommandBehavior()
+    public void Execute()
     {
-        if (_serverThread.TryGetNextCommand(out ICommand cmd))
+        _command.Execute();
+        _executionsLeft--;
+
+        if (_executionsLeft > 0)
         {
-            try
-            {
-                cmd.Execute();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex, cmd);
-            }
-        }
-        else
-        {
-            _serverThread.Stop();
+            _scheduler.Add(this);
         }
     }
 }
