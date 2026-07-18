@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -210,7 +211,10 @@ public class TestCommand : ICommand
     public void Execute()
     {
         counter++;
-        Console.WriteLine($"Поток {_id} вызов {counter}");
+        string msg = $"Поток {_id} вызов {counter}\n";
+        Console.Write(msg);
+        
+        File.AppendAllText("report.txt", msg);
     }
 }
 
